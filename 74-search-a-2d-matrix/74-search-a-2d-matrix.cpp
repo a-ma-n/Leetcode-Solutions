@@ -1,38 +1,30 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int rows=matrix.size(),cols=matrix[0].size();
-        int min_diff=abs(target-matrix[0][0]);
-        int diff=0,p=0;
         
-        for(int i=0;i<rows;i++){
-            //diff=abs(target-matrix[i][0]);
-            
-            if(target>= matrix[i][0]  ){
-                p=i;
-            }
-        }
-        cout<<"p:"<<p<<endl;
-        cout<<"min diff:"<<min_diff;
+        if(!matrix.size())
+            return false;
+        if(matrix.size()==1 && matrix[0].size()==1)
+            return target==matrix[0][0];
+        
+        int mid,high=matrix[0].size()*matrix.size()-1,low=0,r,c,no_of_rows=matrix[0].size();
         
         
-        for(int i=0;i<cols;i++){
-            
-            if(matrix[p][i]==target){
+        while(high>=low){
+            mid=(high+low)/2;
+            r=mid/no_of_rows;
+            c=mid%no_of_rows;
+            if(target==matrix[r][c]){
                 return true;
             }
+            else if(target>matrix[r][c]){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
         }
+        
         return false;
-        
-        // int high=matrix[0].size()-1,low=0,mid;
-        // while(high>=low){
-        //     mid=(high+low)/2;
-        //     if(matrix[p][mid]==target){
-        //         return true;
-        //     }
-        //     else if(target>matrix[p][mid])
-        // }
-        // return false;
-        
     }
 };
