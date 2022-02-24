@@ -4,8 +4,7 @@ public:
         
         if(!matrix.size())
             return false;
-        if(matrix.size()==1 && matrix[0].size()==1)
-            return target==matrix[0][0];
+        
         
         int mid,high=matrix[0].size()*matrix.size()-1,low=0,r,c,no_of_rows=matrix[0].size();
         
