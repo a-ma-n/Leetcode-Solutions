@@ -17,13 +17,14 @@ public:
     if(!root)
         return 0;
     int ans=0;
-        queue<pair<TreeNode*,long>> q;
+        queue<pair<TreeNode*,int>> q;
         q.push({root,0});
         while(!q.empty()){
             int size = q.size();
             int mmin = q.front().second;
             int first,last;
             for(int i=0;i<size;i++){
+                // long due to last test case
                 long cur_id = q.front().second-mmin;
                 TreeNode* node = q.front().first;
                 q.pop();
