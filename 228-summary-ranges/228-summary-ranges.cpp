@@ -4,7 +4,7 @@ public:
       vector <string>v;
         for(auto p(0),q(0);q<nums.size();q++){ 
             if(q+1==size(nums) || nums[q]+1 != nums[q+1]){ //1st case is edge case as for the last element in order wo dont have q!=q1 so we need to print the last element      
-                v.push_back(p!=q?
+                v.emplace_back(p!=q?
                               (to_string(nums[p])+"->"+to_string(nums[q])):
                               (to_string(nums[p]))
                               );   
