@@ -4,30 +4,23 @@ public:
     
     bool isSubsequence(string s, string t) {
         
-       int sizeSubstring = s.length(), sizeString = t.length(),i,j;
-        unordered_set <char> setLetters;
+       int sizeSubstring = s.length(), sizeString = t.length(),i,countLetters=0;
+       unordered_set <char> setLetters;
+        
         for( i = 0 ; i < sizeSubstring ; i++ ){
             if( setLetters.find(s[i]) == setLetters.end() )
                 setLetters.insert(s[i]);
         }
-        
-        int countLetters=0;
-        
         for( i = 0 ; i < sizeString ; i++ ){
             if( s[countLetters] == t[i] )
                 {
-                // k++;
                 countLetters++;
             }
         }
-        cout<<countLetters;
        if(countLetters == sizeSubstring)
            return true;
         else
             return false;
-        
-        
-        
     }
 };
 
