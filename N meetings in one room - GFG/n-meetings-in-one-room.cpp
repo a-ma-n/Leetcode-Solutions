@@ -31,7 +31,7 @@ class Solution
     {
         // Your code here
         struct meeting meet[n];
-        int i=0;
+        int i=0,count=0;
         
         for( i=0;i<n;i++)
         {
@@ -42,20 +42,21 @@ class Solution
         
         sort(meet,meet+n,comparator);
         
-        vector<int> answer;
+        //vector<int> answer;
         
         // end limit
         int limit=meet[0].end;
         
-        answer.push_back(meet[0].pos);
+        //answer.push_back(meet[0].pos);
         
         for( i=0;i<n;i++){
             if(meet[i].start>limit){
                 limit = meet[i].end;
-                answer.push_back(meet[i].pos);
+                count++;
+                //answer.push_back(meet[i].pos);
             }
         }
-        return answer.size();
+        return count+1;
     }
 };
 
