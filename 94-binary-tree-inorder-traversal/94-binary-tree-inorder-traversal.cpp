@@ -11,6 +11,8 @@
  */
 class Solution {
     // DONE WITH MORRIS TRAVERSAL
+    // TC: O(N)
+    // SC: O(1)
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> inorder;
