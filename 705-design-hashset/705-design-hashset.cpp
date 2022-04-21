@@ -1,33 +1,18 @@
 class MyHashSet {
 public:
-    vector<int> v;
-    int pos;
+    vector<bool> v;
     MyHashSet() {
-        
+        v.resize(1e6+1,false);
     }
-    
     void add(int key) {
-        if(!contains(key)){
-            // add new element
-            v.push_back(key);
-        }
+        v[key] = true;
     }
-    
     void remove(int key) {
-        if(contains(key)){
-            // remove element
-             v.erase(v.begin()+pos);
-        }
+        v[key] = false;
     }
     
     bool contains(int key) {
-        for(int i=0;i<v.size();i++){
-            if(v[i]==key){
-                pos=i;
-                return true;
-            }
-        }
-        return false;
+        return v[key];
     }
 };
 
