@@ -11,6 +11,5 @@ public:
             sort(stones.begin(),stones.end());
         }
         return stones[0];
-        // return 0;   
     }
 };
