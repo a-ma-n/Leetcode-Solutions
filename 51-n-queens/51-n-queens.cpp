@@ -12,6 +12,7 @@ class Solution {
           lowerDiagonal[row + col] = 1;
           upperDiagonal[n - 1 + col - row] = 1;
           solve(col + 1, board, ans, leftrow, upperDiagonal, lowerDiagonal, n);
+            // backtracking code
           board[row][col] = '.';
           leftrow[row] = 0;
           lowerDiagonal[row + col] = 0;
