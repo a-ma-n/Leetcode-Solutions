@@ -10,16 +10,18 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         // l1-l2 =extraLength => move l1 by extraLength, then check if both next point to same node then true
-        ListNode* cur=headA;
+        
         ListNode* l1=headA;
         ListNode* l2=headB;
 
+        ListNode* cur=headA;
         int c1=0,c2=0,diff;
         while(cur!=NULL)
         {
             c1++;
             cur=cur->next;
         }
+        
         cur=headB;
         while(cur!=NULL)
         {
