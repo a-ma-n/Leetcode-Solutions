@@ -62,31 +62,39 @@ public:
     void updateFreqListMap(Node *node){
         
         keyNode.erase(node->key);
+        // 1th index (frequency == 1) => remove(node) 
         freqListMap[node->cnt]->removeNode(node);
+        
         if(node->cnt == minFreq && freqListMap[node->cnt]->size == 0){
             minFreq++;
         }
     
         List* nextHigherFreqList = new List();
         
+        // if we already have a higher frequency list available
         if(freqListMap.find(node->cnt + 1) != freqListMap.end()){
+            // update the count of that node
             nextHigherFreqList = freqListMap[node->cnt+1];
         }
-        
-        node->cnt +=1;
+        // increment the count
+        node->cnt += 1;
+        // add a node to the next higher frequency list 
         nextHigherFreqList->addFront(node);
+        // update the frequency list map
         freqListMap[node->cnt] = nextHigherFreqList;
+        // store the node in the keyNode with the key in the keyNode map
         keyNode[node->key] = node;
-    
     }
     
     int get(int key) {
+        // If we are able to find the key , update the frequency list map
         if(keyNode.find(key) != keyNode.end()){
             Node* node = keyNode[key];
             int val = node->value;
             updateFreqListMap(node);
             return val;
         }
+        // if we are not able to find. a key
         return -1;
     }
     
@@ -94,28 +102,44 @@ public:
         if(maxSizeCache == 0){
             return;
         }
+        // If node exists
         if(keyNode.find(key) != keyNode.end()){
             Node* node = keyNode[key];
             node->value = value;
             updateFreqListMap(node);
         }
+        // If node does not exist , create a new one
          else {
+            // If the current size = max size of cache
             if(curSize == maxSizeCache) {
+                // get the list with min frequency
                 List* list = freqListMap[minFreq]; 
+                // erase the key of the node just previous to the til in the keyNode map
                 keyNode.erase(list->tail->prev->key); 
+                // adding to the list with minimum frequency
                 freqListMap[minFreq]->removeNode(list->tail->prev);
+                // decreasing the cur size
                 curSize--; 
             }
-           curSize++; 
+             
+            curSize++; 
             // new value has to be added who is not there previously 
+            // initialise minimum frequency with 1 
             minFreq = 1; 
+             
+            // create a new list for storing frequency => listfrequency
             List* listFreq = new List(); 
+            // if we find a list with min frequenct not present in the map
             if(freqListMap.find(minFreq) != freqListMap.end()) {
                 listFreq = freqListMap[minFreq]; 
             }
+            // create a new node 
             Node* node = new Node(key, value); 
+            // add a new node in the front
             listFreq->addFront(node);
+            // add a new key value pair in the keyNode map
             keyNode[key] = node; 
+            // create a new pair of min frequency -> list , and store it in a frequency list map
             freqListMap[minFreq] = listFreq; 
         }
     }
