@@ -1,73 +1,40 @@
-/*
-    Time Complexity: O(M*N*log(M))
-    Space Complexity: O(M)
-*/
-#include <climits>
-
 class Solution {
 public:
-    // A function to check whether string prefix is common in all strings or not.
 
-    bool isCommon(vector<string> &arr, string &prefix, int length, int n)
+int max(int i,int j)
 {
-    for(int idx = 0; idx < length; ++idx)
-    {
-        for(int index = 0; index < n; index++)
-        {
-            // If arr[index][idx] is not equal to prefix[idx], return false.
-            if (arr[index][idx] != prefix[idx])
-            {
-                return false;
-            }
-        }
-    }
-    
-    // The string prefix is common in all strings.
-    return true; 
+    return (i > j) ? i : j ;
 }
+ 
+string longestCommonPrefix(vector<string>& strs) {
+   
+    string ans = "", s = strs[0] ;
+
+    int n = strs.size() ;
+    int p=0;
     
-string longestCommonPrefix(vector<string> &arr)
-{
-    int n = arr.size();
-    // The string prefix to store the shortest string.
-    string prefix = "";
-
-    // The variable minlength to store the length of the shortest string.
-    int minLength = INT_MAX;
-
-    for(int index = 0;index < n; ++index)
+    for(auto x: strs)
+        if(x == ans) p++ ;
+    
+    int maxi = 0 ;
+    for(auto x:strs)
+        maxi = max(maxi,x.size()) ;
+    
+    if(p==n) return ans ;
+    
+    
+    for(int i=0;i<maxi;i++)
     {
-        if (arr[index].size() < minLength)
-        {
-            minLength = arr[index].size();
-            prefix = arr[index];
-        }
+        int c=0;
+        char t = s[i] ;
+        
+        for(int j=0;j<n;j++)
+            if(strs[j][i] == t) c++ ;
+        
+        if(c == n) ans += t ;
+        else break ;
     }
-
-    int start = 0;
-    int end = minLength;
-    int mid;
-
-    while (start <= end)
-    {   
-        mid = (start + end) / 2;
-
-        // The substring prefix of length mid is common in all strings 
-        if (isCommon(arr, prefix, mid, n))
-        {
-            start = mid + 1;
-        }
-        else
-        {
-            end = mid - 1;
-        }
-    }
-
-    mid = (start + end) / 2;
-
-    // The string answer will store the longest common prefix 
-    string answer = prefix.substr(0, mid);
-
-    return answer;
+    
+    return ans ;
 }
 };
