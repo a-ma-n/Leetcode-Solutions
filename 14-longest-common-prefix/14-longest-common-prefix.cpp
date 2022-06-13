@@ -1,66 +1,73 @@
-class TrieNode{
-public:
-    unordered_map<char, TrieNode*> children;
-    char val;
-    bool isWord = false;
-    
-    TrieNode(){}
-    
-    TrieNode(char v){
-        this->val = v;
-    }
-};
-
-class Trie{
-private:
-    TrieNode* root;
-public:
-    /** Initialize your data structure here. */
-    Trie() {
-        root = new TrieNode();
-    }
-    
-    /* Get TrieNode. */
-    TrieNode* getTrieNode(){
-        return root;
-    }
-    
-    /** Inserts a word into the trie. */
-    void insert(string word) {
-        TrieNode* temp = root;
-        
-        for(auto ch : word){
-            if(temp->children.find(ch) == temp->children.end()){
-                temp->children[ch] = new TrieNode(ch);
-            }     
-            temp = temp->children[ch];
-        }
-        
-        temp->isWord = true;
-    }
-
-};
+/*
+    Time Complexity: O(M*N*log(M))
+    Space Complexity: O(M)
+*/
+#include <climits>
 
 class Solution {
 public:
-    string longestCommonPrefix(vector<string>& strs) {
-        // insert all keys into trie
-        Trie* pTrie = new Trie();
-        
-        for (string str : strs) { pTrie->insert(str); }
+    // A function to check whether string prefix is common in all strings or not.
 
-        // Traverse the trie and find Longest Common Prefix
-        string lcp("");
-        TrieNode* curr = pTrie->getTrieNode();
-
-        // Do till we find a leaf node or node has more than 1 children
-        while (curr && !curr->isWord && (curr->children.size() == 1))
+    bool isCommon(vector<string> &arr, string &prefix, int length, int n)
+{
+    for(int idx = 0; idx < length; ++idx)
+    {
+        for(int index = 0; index < n; index++)
         {
-            auto it = curr->children.begin();
-            lcp += it->first;
-            curr = it->second;
+            // If arr[index][idx] is not equal to prefix[idx], return false.
+            if (arr[index][idx] != prefix[idx])
+            {
+                return false;
+            }
         }
-
-        return lcp;
     }
+    
+    // The string prefix is common in all strings.
+    return true; 
+}
+    
+string longestCommonPrefix(vector<string> &arr)
+{
+    int n = arr.size();
+    // The string prefix to store the shortest string.
+    string prefix = "";
+
+    // The variable minlength to store the length of the shortest string.
+    int minLength = INT_MAX;
+
+    for(int index = 0;index < n; ++index)
+    {
+        if (arr[index].size() < minLength)
+        {
+            minLength = arr[index].size();
+            prefix = arr[index];
+        }
+    }
+
+    int start = 0;
+    int end = minLength;
+    int mid;
+
+    while (start <= end)
+    {   
+        mid = (start + end) / 2;
+
+        // The substring prefix of length mid is common in all strings 
+        if (isCommon(arr, prefix, mid, n))
+        {
+            start = mid + 1;
+        }
+        else
+        {
+            end = mid - 1;
+        }
+    }
+
+    mid = (start + end) / 2;
+
+    // The string answer will store the longest common prefix 
+    string answer = prefix.substr(0, mid);
+
+    return answer;
+}
 };
