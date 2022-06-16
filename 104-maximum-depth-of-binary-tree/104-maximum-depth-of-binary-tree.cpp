@@ -24,7 +24,7 @@ public:
         if (root==NULL )
             return 0;
         int maxHeight=0;
-        findHeight(root,0,maxHeight);
-        return maxHeight+1;
+        findHeight(root,1,maxHeight);
+        return maxHeight;
     }
 };
