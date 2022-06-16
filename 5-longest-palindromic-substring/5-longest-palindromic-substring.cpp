@@ -22,6 +22,7 @@ public:
 
     return end - start - 1;
 }
+    
     string longestPalindrome(string str) {
         int n = str.length();
 
@@ -40,7 +41,7 @@ public:
         // Longest even length palindrome with center points as i and i + 1.
         int len2 = expandAroundCenter(str, i, i + 1);
                 
-            int len = max(len1,len2);
+        int len = max(len1,len2);
         
         
         // Update the start and end.
