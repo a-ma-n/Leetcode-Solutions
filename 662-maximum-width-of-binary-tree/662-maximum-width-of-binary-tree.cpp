@@ -25,7 +25,7 @@ public:
             int first,last;
             for(int i=0;i<size;i++){
                 // long due to last test case
-                long cur_id = q.front().second-mmin;
+                long cur_id = q.front().second-mmin; //  subtracted to prevent integer overflow
                 TreeNode* node = q.front().first;
                 q.pop();
                 if(i==0)
