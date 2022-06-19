@@ -10,38 +10,28 @@
  * };
  */
 class BSTIterator {
+    stack<TreeNode *> myStack;
 public:
-  /*  vector<int> io(TreeNode* r,vector<int> v){
-        if(r==NULL)
-            return v;
-        io(r->left,v);
-        //cout<<r->val;
-        v.push_back(r->val);
-        io(r->right,v);
-        return v;
-    }*/
-    stack<TreeNode*> s;
+    BSTIterator(TreeNode *root) {
+        pushAll(root);
+    }
 
-    BSTIterator(TreeNode* root) {
-         partialInorder(root);
-    }
-    
-    void partialInorder(TreeNode* r){
-        while(r!=NULL){
-            s.push(r);
-            r=r->left;            
-        }
-    }
-    
-    int next() {
-       TreeNode* top=s.top();
-        s.pop();
-        partialInorder(top->right);
-        return top->val;
-    }
-    
+    /** @return whether we have a next smallest number */
     bool hasNext() {
-        return !s.empty();
+        return !myStack.empty();
+    }
+
+    /** @return the next smallest number */
+    int next() {
+        TreeNode *tmpNode = myStack.top();
+        myStack.pop();
+        pushAll(tmpNode->right);
+        return tmpNode->val;
+    }
+
+private:
+    void pushAll(TreeNode *node) {
+        for (; node != NULL; myStack.push(node), node = node->left);
     }
 };
 
