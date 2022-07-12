@@ -1,25 +1,19 @@
 class Solution {
 public:
-    int dp[101][2];
-    int rec(vector<int> &nums,int idx ,bool robFirst){
-        if(idx>=nums.size() || (idx==nums.size()-1 && robFirst)) return 0;
-        
-        if(dp[idx][robFirst]!=-1) return dp[idx][robFirst];
-        
-        int rob=0,notRob=0;
-        
-        if(idx==0) rob=nums[idx]+rec(nums,idx+2,1);
-        else rob=nums[idx]+rec(nums,idx+2,robFirst);
-        notRob =  rec(nums,idx+1,robFirst);
-        
-        return dp[idx][robFirst]=max(rob,notRob);
-    }
-    
     int rob(vector<int>& nums) {
         int n = nums.size();
-        memset(dp, -1, sizeof dp);
-        //todo check how would i declare it if it were a 2d vector array
-        return rec(nums,0,false);
+        int dp[n+1],dp1[n+1];
+        dp[0]=0;
+        dp[1]=nums[0];
+        dp1[0]=0;
+        dp1[1]=0;
+        for(int i =2;i<=n;i++){
+            if(i==n) dp[i]=dp[i-1];// exclude the last element
+            else dp[i]=max(dp[i-1],dp[i-2]+nums[i-1]);
+            dp1[i]=max(dp1[i-1],dp1[i-2]+nums[i-1]);   
+            
+        }
+        return max(dp[n],dp1[n]);
     }
     
 };
