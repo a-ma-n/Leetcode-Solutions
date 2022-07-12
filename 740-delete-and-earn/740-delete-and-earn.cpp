@@ -19,7 +19,9 @@ public:
         while(idx < nums.size() && nums[idx] == cur+1){
             idx++;
         }
-        
+        // if we are selecting then pass idx(excluded the cur +1th values),
+        // else pass the next index
+        // if we consider an element =>we already reached it by skipping a previous element and the next element will be skipped so the condition is satisfied
         return dp[pos] = max(sum+solve(nums, idx), solve(nums, pos+1));
     }
     
