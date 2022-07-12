@@ -1,0 +1,2 @@
+- We have a circle instead of a straight line, lets then take a circular array
+- we need to store the value of bool first also in a array so that we do not need to calculate it again if we back-track
