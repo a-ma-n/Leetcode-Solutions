@@ -15,4 +15,4 @@ int rob(vector<int>& nums) {
 vector<int> dp(nums.size()+1,-1);
 return rec(nums,0,dp);
 }
-**
+**Tabular**
