@@ -2,18 +2,17 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size();
-        int dp[n+1],dp1[n+1];
-        dp[0]=0;
-        dp[1]=nums[0];
-        dp1[0]=0;
-        dp1[1]=0;
-        for(int i =2;i<=n;i++){
-            if(i==n) dp[i]=dp[i-1];// exclude the last element
-            else dp[i]=max(dp[i-1],dp[i-2]+nums[i-1]);
-            dp1[i]=max(dp1[i-1],dp1[i-2]+nums[i-1]);   
-            
-        }
-        return max(dp[n],dp1[n]);
+        int a1 = 0, b1 = nums[0], a2 = 0, b2 = 0, temp1, temp2;
+        for(int i = 2 ; i <= n ; i++){
+            if(i != n) {
+                temp1 = b1;
+                b1 = max(a1 + nums[i-1], b1);
+                a1 = temp1;
+            }
+            temp2 = b2;
+            b2 = max(a2 + nums[i-1], b2);
+            a2 = temp2;
+        }  
+        return max(b1, b2);
     }
-    
 };
