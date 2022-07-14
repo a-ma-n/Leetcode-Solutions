@@ -7,6 +7,6 @@ public:
         string s=to_string(num);
         for(auto it:s) v.push_back(it-48);
         sort(v.begin(),v.end());
-        return min( (v[0]*10+v[3])+(v[1]*10+v[2]),(v[1]*10+v[3])+(v[0]*10+v[2]));
+        return (v[0]+v[1])*10+v[2]+v[3];
     }
 };
