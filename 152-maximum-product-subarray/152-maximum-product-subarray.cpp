@@ -11,7 +11,7 @@ public:
             //we store the max in prod1
             prod1 = temp;
             //find the max of previous result and prod1
-            result = max(result,prod1);
+            result = max(result,temp);
             cout<<"temp "<<"prod2 "<<"prod1 "<<"result"<<endl;
              cout<<temp<<" "<<prod2<<" "<<prod1<<" "<<result<<endl;
         }
