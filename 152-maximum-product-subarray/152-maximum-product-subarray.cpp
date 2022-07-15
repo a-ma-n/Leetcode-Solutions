@@ -13,16 +13,23 @@ public:
             //find the max of previous result and prod1
             result = max(result,temp);
             cout<<"temp "<<"prod2 "<<"prod1 "<<"result"<<endl;
-             cout<<temp<<" "<<prod2<<" "<<prod1<<" "<<result<<endl;
+            cout<<temp<<prod2<<" "<<prod1<<" "<<result<<endl;
         }
         return result;
     }
 };
 /*
+
 temp prod2 prod1 result
-6 3 6 6
+12   -3      12   12
 temp prod2 prod1 result
--2 -12 -2 6
+6   -24      6   12
+
+
 temp prod2 prod1 result
-4 -48 4 6
+    -36     12  12
+temp prod2 prod1 result
+    -144    72   72
+    
+=> if we take prod1 then it interferes with prod2
 */
