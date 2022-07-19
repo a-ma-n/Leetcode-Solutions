@@ -5,7 +5,7 @@ public:
         bool right=false;
         int rows=matrix.size(),cols=matrix[0].size();
         
-        if( rows==1 && cols ==1 ) return;
+       
         
         for(int i = 0 ; i<cols;i++){
             // topmost col check
@@ -14,10 +14,7 @@ public:
                 break;
             }
         }
-        //  cout<<matrix[0][cols-1];
-        // cout<<matrix[1][cols-1];
-        // cout<<matrix[2][cols-1];
-        // cout<<rows;
+        
         for(int i = 0 ; i<rows;i++)
             {
             // rightmost col check
