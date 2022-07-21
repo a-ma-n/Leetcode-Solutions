@@ -3,18 +3,30 @@ public:
     
     // TC: O(N)
     // SC: O(1) ~ O(5)
-    int maxProfit(vector<int>& prices) {
-        int i = 0, buy , sell , profit = 0 ,N = prices.size() - 1;
-        while(i < N){
-            while( i < N && prices[i+1] <= prices[i] ) i++; // store the minimum in succesive elements
-            buy = prices[i];
-            
-            while( i < N && prices[i+1] > prices[i] ) i++; // store maximum in successive elements
-            sell = prices[i];
-            
-            profit += sell - buy; 
-        }
-        return profit;
-    }
+    int maxProfit(vector<int>& Arr) {
+      
+    int n = Arr.size();
     
+   vector<vector<int>> dp(n+1,vector<int>(2,-1));
+    
+    //base condition
+    dp[n][0] = dp[n][1] = 0;
+    
+    int profit;
+    
+    for(int ind= n-1; ind>=0; ind--){
+        for(int buy=0; buy<=1; buy++){
+            if(buy==0){// We can buy the stock
+                profit = max(0+dp[ind+1][0], -Arr[ind] + dp[ind+1][1]);
+            }
+    
+            if(buy==1){// We can sell the stock
+                profit = max(0+dp[ind+1][1], Arr[ind] + dp[ind+1][0]);
+            }
+            
+            dp[ind][buy]  = profit;
+        }
+    }
+    return dp[0][0];
+}
 };
