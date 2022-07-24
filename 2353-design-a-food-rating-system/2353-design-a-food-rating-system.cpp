@@ -1,37 +1,27 @@
 #include <type_traits>
 class FoodRatings {
 public:
- 
-    map<string,set<pair<int,string>>>mp;
-    map<string,pair<string,int>>mp1;
+    unordered_map<string,set<pair<int,string>>> cuisine_ratings;
+    unordered_map<string,string> food_cuisine;
+    unordered_map<string,int> food_rating;
+    
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
-        mp.clear();
-        mp1.clear();
-        for(int i=0;i<foods.size();i++)
-        {
-            string a = foods[i];
-            string b = cuisines[i];
-            int c = ratings[i];
-            mp1[a]={b,c};
-            mp[b].insert({c,a});
+        for(int i =0;i<foods.size();++i){
+            cuisine_ratings[cuisines[i]].insert({ -ratings[i], foods[i] });
+            food_cuisine[foods[i]] = cuisines[i];
+            food_rating[foods[i]] = ratings[i];
+            
         }
     }
     
     void changeRating(string food, int newRating) {
-        string a = mp1[food].first;
-        int b = mp1[food].second;
-       
-        mp[a].erase({b,food});
-        mp[a].insert({newRating,food});
-        mp1[food]={a,newRating};
+        auto &cuisine = food_cuisine.find(food)->second;
+        cuisine_ratings[cuisine].erase({ -food_rating[food], food });
+        cuisine_ratings[cuisine].insert({-newRating,food});
+        food_rating[food]=newRating;
     }
     
     string highestRated(string cuisine) {
-
-        auto s1 = (mp[cuisine].end());
-        s1--;
-        int s = s1->first;
-        auto it = mp[cuisine].lower_bound({s,"a"});
-        return it->second;
+        return begin(cuisine_ratings[cuisine])->second;
     }
 };
