@@ -20,11 +20,11 @@ public:
             // Element divisible by 2
             if( (a[i]%2==0) && a[i]<0 )
             {
-                // 
+                // As greater negative elements will be towards left after sorting hence , search for a[i]/2
                 if (binarySearch(a, i + 1, a.size() - 1, a[i] / 2)) return true;
             }
             else{
-                // Element not divisible by 2, see if we can find a multiple
+                // Element not divisible by 2, see if we can find a multiple, as low elements are towards left after sorting hence we are starting from left to find an element on the right
                  if (binarySearch(a, i + 1, a.size() - 1, 2 * a[i])) return true;
             }
         }
