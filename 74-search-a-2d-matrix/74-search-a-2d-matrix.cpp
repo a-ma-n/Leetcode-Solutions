@@ -4,10 +4,11 @@ public:
         
         if(!matrix.size())
             return false;  
+        
         int mid,high=matrix[0].size()*matrix.size()-1,low=0,r,c,no_of_rows=matrix[0].size();
         
         while(high>=low){
-            mid=(high+low)/2;
+            mid=low+(high-low)/2;
             r=mid/no_of_rows;
             c=mid%no_of_rows;
             if(target==matrix[r][c]){
