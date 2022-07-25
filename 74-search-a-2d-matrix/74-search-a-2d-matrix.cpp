@@ -2,9 +2,9 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         
-        if(!matrix.size())
-            return false;  
-        
+        // if(!matrix.size())
+        //     return false;  
+        // high =n^2 -> prevents overflow
         int mid,high=matrix[0].size()*matrix.size()-1,low=0,r,c,no_of_rows=matrix[0].size();
         
         while(high>=low){
