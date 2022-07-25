@@ -13,11 +13,10 @@ public:
         for(auto &t : nums1 ){
             int n = a.size(),L = initL , R =n-1;
             while(L<=R){
-                int M = L +(R-L);
+                int M = L +(R-L)/2;
                 // M-1<initL ?
                 if( (M-1<initL || a[M-1]<t) && a[M] == t ) {
 
-                    // int M = L + (R-L)/2;
                     ans.push_back(t);
                     initL = M+1;
                     break;
