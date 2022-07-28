@@ -1,0 +1,4 @@
+- For our BFS routine, we keep a queue, q to maintain the queue of cells to be examined next.
+- We start by adding all the cells with 0s to q.
+- Intially, distance for each 0 cell is 0 and distance for each 1 is INT_MAX, which is - updated during the BFS.
+- Pop the cell from queue, and examine its neighbors. If the new calculated distance for neighbor {i,j} is smaller, we add {i,j} to q and update dist[i][j].
