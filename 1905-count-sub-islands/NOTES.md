@@ -1,1 +1,1 @@
-do dfs if we find common land and if grid 1 has not equal value then set it false and add that condn to if stmt
+​
