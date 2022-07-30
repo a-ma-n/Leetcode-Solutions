@@ -8,6 +8,11 @@ public:
     An additional O(r⋅c) space is required to maintain the queue.
     */
     // BFS Solution
+    
+    /*
+    At the end of the day it transforms itself into a map like grid where the 1's next to 0's remain 1 only.
+    And the innner 1's start increasing if they do not have 0's at the boundary.
+    */
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
         int rows=mat.size();
         if(!rows) return mat; // rows==0
