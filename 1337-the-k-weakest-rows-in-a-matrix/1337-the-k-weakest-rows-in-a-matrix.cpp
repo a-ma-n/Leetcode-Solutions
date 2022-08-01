@@ -1,4 +1,5 @@
 struct CompareHeapElements {
+    // 2 conditions mentioned in the question
     bool operator()(pair<int,int> const& p1, pair<int,int> const& p2)
     {
         if(p1.first<p2.first){
@@ -23,6 +24,7 @@ class Solution {
                 l=mid+1;
             }
         }
+        // we have soldiers till l length and after that all civilians
         return l;
     }
     
@@ -37,17 +39,18 @@ public:
         // then push {soldier_count,row_index} to the min_heap
         for(int i=0;i<mat.size();++i){
             max_heap.push({calculateSoldierCount(mat[i]),i});
+            // pop till we have k weakest rows or last k elements
             if(max_heap.size()>k){
                 max_heap.pop();
             }
         }
         
         vector<int>ans;
-        while(max_heap.size()){ // pushing the top k smallest elements of min_heap to "ans"
+        while(max_heap.size()){ // pushing the indices of top k weakest rows of min_heap to "ans"
             ans.push_back(max_heap.top().second);
             max_heap.pop();
         }
-		
+		// we reverse the ans , now the weakest is the 1st then the 2nd weakest and then the 3rd weakest
         reverse(ans.begin(), ans.end());
         return ans;
     }
