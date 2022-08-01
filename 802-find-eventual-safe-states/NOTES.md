@@ -1,0 +1,1 @@
+The question is simply to find the nodes/vertices which are involved in a cycle for a directed graph.
