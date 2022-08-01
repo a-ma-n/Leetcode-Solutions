@@ -11,8 +11,8 @@ public:
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
         int n = rooms.size();
         vector<bool> visited(n,false);
-        dfs(rooms,visited,0);
-        for(auto v:visited) if(!v) return false;
+        dfs(rooms,visited,0);  // start from room 0
+        for(auto v:visited) if(!v) return false; // if all rooms were not reached from room 0, return false
         return true;
     }
 };
