@@ -2,9 +2,10 @@ class Solution {
 public:
     // turns the ith digit of s in forward and backward direction and returns the turned string as vector
 vector<string> turn(string s, int i) {
-	vector<string> res(2, s);
-	res[0][i] = '0' + (res[0][i] - '0' + 1) % 10;        // forward turn
-	res[1][i] = '0' + (res[1][i] - '0' - 1 + 10) % 10;   // backward turn
+	vector<string> res(2, s); // set of 2 strings
+	res[0][i] = '0' + (res[0][i] - '0' + 1) % 10;        // forward turn -> 0th string
+	res[1][i] = '0' + (res[1][i] - '0' - 1 + 10) % 10;   // backward turn ->1st string
+    //cout<< res[0][i]<<" "<<res[1][i]<<endl;
 	return res;
 }
      
@@ -20,13 +21,11 @@ vector<string> turn(string s, int i) {
                 auto cur_str = q.front(); q.pop();    
                 // Trying forward and backward turn for each digit of current string
                 for(int j = 0 ; j < 4 ; j ++ )
-                    for(auto adj_str : turn(cur_str, j))
+                    for(auto adj_str : turn(cur_str, j)) // check the forward turn and the backward turn
                         if(seen.find(adj_str) == end(seen) && dead.find(adj_str) == end(dead)) // adjacent (turned) string is not visited earlier, nor a dead end
-						if(adj_str == target) return minTurns;
-						else q.push(adj_str), seen.insert(adj_str);
-                    
-                
-            }
+                            if(adj_str == target) return minTurns;
+                            else q.push(adj_str), seen.insert(adj_str);
+                }
         }
             return -1;
     }
