@@ -1,19 +1,23 @@
 class MyCalendar {
 public:
-    vector<pair<int,int>> crr;
+    // we will store the start,end indexes in the booking array
+    vector<pair<int,int>> booking;
+    // we will store the end,start indexes in the set
+    set<pair<int,int>> s;
+    
     MyCalendar() {     
     }
     
     bool book(int start, int end) {
-        if(crr.size()==0) {
-            crr.push_back({start,end});
-            return true;
-        }
-        for(auto it:crr){
-            if(it.first<=start && it.second>start) return false;
-            if(start<=it.first && end>it.first ) return false;
-        }
-        crr.push_back({start,end});
+        // it converts tyhe input in such a way such that the highher val is stores as first and the lower as the second valiue
+       auto it=s.upper_bound({start,end});
+        cout<<it->first<<" "<<it->second<<endl;
+        //if the vector is not null   && 
+        // the smaller value is less than the end value => the intervals are overlapping
+        if(it!=s.end() && it->second<end)
+            return false;
+        // if the intervals dont overlap then add it to the set
+        s.insert({end,start});
         return true;
     }
 };
