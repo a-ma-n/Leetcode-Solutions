@@ -11,7 +11,7 @@ public:
     bool book(int start, int end) {
         // it converts tyhe input in such a way such that the highher val is stores as first and the lower as the second valiue
        auto it=s.upper_bound({start,end});
-        cout<<it->first<<" "<<it->second<<endl;
+        //cout<<it->first<<" "<<it->second<<endl;
         //if the vector is not null   && 
         // the smaller value is less than the end value => the intervals are overlapping
         if(it!=s.end() && it->second<end)
