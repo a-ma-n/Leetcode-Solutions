@@ -11,6 +11,8 @@ public:
             else 
                 start =mid+1;      
         }
+        // we dont have a condition when the element is eqaual to something since we dont know the target we are after
+        // we are simply trying to get a range which is not in the normal order,i.e. increasing in this case which leads us to getting the end index as the index on which our result lies
         return nums[end];
     }
 };
