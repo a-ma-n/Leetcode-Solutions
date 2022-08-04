@@ -1,17 +1,13 @@
 class Solution {
 public:
+    // store max profit
     int maxProfit(vector<int>& prices) {
-        int min=prices[0],pr=0,i,p,current_profit=0,max_profit=0;
-        for(auto it:prices){
-            
-            if(min>it){
-                min=it;
-            }
-            current_profit=it-min;
-            if(current_profit>max_profit){
-                max_profit=current_profit;
-            }
+        int profit = 0 , maxProf = 0 , n = prices.size(),minPrice = prices[0];  
+        for(int i = 1 ; i < n ;  i ++ ){
+            minPrice = min(minPrice,prices[i]);
+            profit = prices[i] - minPrice;
+            maxProf=max(maxProf,profit);
         }
-        return max_profit;
+        return maxProf;
     }
 };
