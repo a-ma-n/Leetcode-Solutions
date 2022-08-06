@@ -2,9 +2,11 @@ class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         
+        // queue to do bfs with the word list
         queue<string> q;
       
-        //hashset
+        //visited and wordlist
+        // visited set to keep track of already visited nodes (as we are also popping some elements from the queue)
         set<string> visited,words;
         
         // convert to a set
@@ -26,6 +28,7 @@ public:
                 // bfs using the queue
                 string s = q.front();
                 
+                // if wefound the word in the queue
                 if(s==endWord)
                     return changes;
                 
@@ -44,6 +47,7 @@ public:
                         if(words.count(t) && !visited.count(t) ){
                             // if in the wordList and not in the visited list
                             
+                            // push variations in the queue & visited node
                             q.push(t);
                             
                             visited.insert(t);
