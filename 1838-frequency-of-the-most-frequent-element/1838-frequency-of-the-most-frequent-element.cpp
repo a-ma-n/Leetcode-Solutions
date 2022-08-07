@@ -1,8 +1,21 @@
 class Solution {
 public:
     int maxFrequency(vector<int>& A, int k) {
-        
-        if(A.size()==1) return 1;
+        //Shrinkable Window
+        sort(begin(A), end(A));
+        long i =0, j = 0,sum=0,ans = 1,N=A.size();
+        for(;j<N;++j){
+            sum+=A[j];
+            
+            if((j-i+1)*A[j] - sum > k ) sum-=A[i++];
+            
+            ans = max(ans,j-i+1);
+        }
+        return ans;
+    }
+};
+
+   /*  // Non Shrinkable Window Template
         sort(A.begin(),A.end());
         long i = 0,j=0,sum=0, N = A.size();
         for(; j < N ; ++j){
@@ -14,6 +27,4 @@ public:
         }
         // we are going to return the size of the window as it is the number of elements which can be taken
         // we did j-i & not j-i+1 as j is already>n
-        return j-i;
-    }
-};
+        return j-i;*/
