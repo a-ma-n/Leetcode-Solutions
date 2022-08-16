@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //aproach 3 in solns
     int findDuplicate(vector<int>& nums) {
      
     for(int i=0;i<nums.size();i++){
