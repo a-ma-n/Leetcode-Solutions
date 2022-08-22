@@ -5,7 +5,7 @@ class Solution:
         res=first
         arr.append(first)
         for i in encoded:
-            res=res^i
+            res^=i
             arr.append(res)
         return arr
             
