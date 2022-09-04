@@ -13,8 +13,12 @@ class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         
+        // x coordinate, y coordinate get from queue multiset
         map<int,map<int,multiset<int>>> nodes;
+        
+        // node value, multiset(of node coordinates)
         queue<pair<TreeNode*,pair<int,int>>> todo;
+        
         todo.push({root,{0,0}});
         while(!todo.empty()){
             auto p = todo.front();
@@ -40,6 +44,7 @@ public:
         for(auto p: nodes){
             vector<int> col;
             for(auto q :p.second){
+                // col.end is the position to insert
                 col.insert( col.end() , q.second.begin() , q.second.end() );
             }
             ans.push_back(col);
