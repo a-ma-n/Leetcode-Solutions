@@ -1,0 +1,2 @@
+https://leetcode.com/problems/reorganize-string/discuss/492827/Python-Simple-heap-solution-with-detailed-explanation
+https://leetcode.com/problems/reorganize-string/discuss/1753733/Python-Heap-%2B-Counter
