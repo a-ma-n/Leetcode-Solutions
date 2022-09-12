@@ -1,5 +1,5 @@
-class Solution(object):
-    def bagOfTokensScore(self, tokens, P):
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], P: int) -> int:
         tokens.sort()
         deque = collections.deque(tokens)
         ans = bns = 0
