@@ -12,6 +12,7 @@ public:
         v.push_back(price);
         // if stack is not empty and the top most element which is actually the greatest is smaller than price then
         // v[st.top] as st stores the index of the element
+        // keep a monotonically decreasing(top to bottom) monotonic stack, stop if the element at top of stack is greater than current price
         while(!st.empty() && price >= v[st.top()]){
             st.pop();
         }
