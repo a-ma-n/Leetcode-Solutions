@@ -8,6 +8,19 @@ public:
         if( x >=0 && y >=0 && x<row && y<col ) return true;
         return false;
     }
+    void dfs(int i,int j,vector<vector<char>>& grid){
+        int row= grid.size(),col=grid[0].size(); 
+        grid[i][j]='0';
+        for(int k =0;k<4;k++){
+             int ci = DR[k] + i;
+             int cj = DC[k] + j;
+             if(!validIndex(ci,cj,row,col))
+                 continue;
+            if(grid[ci][cj]=='1')
+                dfs(ci,cj,grid);
+        }
+        
+    }
     void bfs(int i, int j, vector<vector<char>>& grid) {
         int row= grid.size(),col=grid[0].size(); 
         grid[i][j]='0';
@@ -36,7 +49,7 @@ public:
             for( int j =0; j<col ;j++ ){
                 if(grid[i][j]=='1'){
                     count++;
-                    bfs(i,j,grid);
+                    dfs(i,j,grid);
                 }
             }
         }
