@@ -8,6 +8,7 @@ class Node:
 
 class Solution:
     def dfs(self, n, m, visited):
+        
         if n in visited:
             return 
         visited.add(n)
@@ -21,7 +22,7 @@ class Solution:
             
     def cloneGraph(self, node: 'Node') -> 'Node':
 
-
+        return deepcopy(node)
         if not node:
             return node
         m, visited = dict(), set()
