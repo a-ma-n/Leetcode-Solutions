@@ -15,7 +15,7 @@ class Solution:
             
             return True
         
-        adj = [[] for _ in range(n+1)] 
+        adj = [[] for _ in range(n + 1)]
         for dislike in dislikes:
             adj[dislike[0]].append(dislike[1])
             adj[dislike[1]].append(dislike[0])
