@@ -1,15 +1,16 @@
 
 class Solution:
     def answerQueries(self, nums: List[int], queries: List[int]) -> List[int]:
-        sortedNums,ans=sorted(nums),[]
+        sortedNums=sorted(nums)
+        # build prefix array
+        for i in range(1,len(nums)):
+            sortedNums[i]=sortedNums[i-1]+sortedNums[i]
+        
+        ans=[]
+        
+        # For each query, find its insertion index to the prefix sum array.
         for query in queries:
-            sumOfDigits,lengthOfSubarray,flag=0,0,False
-            for number in sortedNums:
-                if number+sumOfDigits > query :
-                    ans.append(lengthOfSubarray)
-                    break
-                else:
-                    sumOfDigits+=number
-                    lengthOfSubarray+=1
-            if sum(nums) <= query: ans.append(lengthOfSubarray)
+            index = bisect.bisect_right(sortedNums,query)
+            ans.append(index)
+        
         return ans
