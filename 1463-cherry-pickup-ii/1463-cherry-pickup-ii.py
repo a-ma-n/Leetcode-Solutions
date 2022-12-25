@@ -1,6 +1,6 @@
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
-        
+        # top down dp
         m,n=len(grid),len(grid[0])
         
         @lru_cache(None)
