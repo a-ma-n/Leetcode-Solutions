@@ -6,12 +6,13 @@ class Solution:
         countOfFilledBags=0
         # print(differences)
         for diff in differences:
-            if diff==0: 
-                countOfFilledBags+=1
-                
-            elif additionalRocks<diff: break
-            else: 
-                countOfFilledBags+=1
+            if additionalRocks<diff: break
+            elif diff!=0: 
                 additionalRocks-=diff
+            countOfFilledBags+=1
+                
+            # else: 
+            #     countOfFilledBags+=1
+                
             # print(countOfFilledBags,diff)
         return countOfFilledBags
