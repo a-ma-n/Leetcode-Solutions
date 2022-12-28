@@ -5,7 +5,7 @@ class Solution:
         sortedPiles=[-1*i for i in piles]
         heapq.heapify(sortedPiles)
         while k>0:
-            temp=math.floor(heappop(sortedPiles)/2)
+            temp=(heappop(sortedPiles)//2)
             heappush(sortedPiles,temp)
             k-=1
         return -1*sum(sortedPiles)
