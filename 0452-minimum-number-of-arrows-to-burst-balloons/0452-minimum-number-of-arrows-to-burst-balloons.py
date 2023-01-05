@@ -7,6 +7,6 @@ class Solution:
             if point[0]<=temp:
                 temp=min(point[1],temp)
             else:
-                countOfArrows+=1
                 temp=point[1]
+                countOfArrows+=1
         return countOfArrows
