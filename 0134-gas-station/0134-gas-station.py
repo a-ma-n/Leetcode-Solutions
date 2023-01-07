@@ -1,11 +1,15 @@
 from itertools import product
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        totalSurplus, surplus, start =  0, 0, 0
-        for i in range(len(gas)):
-            totalSurplus += gas[i] - cost[i]
-            surplus += gas[i] - cost[i]
-            if surplus < 0:
-                surplus = 0
-                start = i + 1
-        return -1 if (totalSurplus < 0) else start
+        maxValue = 1e6
+        minValue = -1
+        total = 0
+        for index, (gasValue, costValue) in enumerate(zip(gas, cost)):
+            total += gasValue - costValue
+            if total < maxValue:
+                maxValue = total
+                minValue = index
+        if total < 0:
+            return -1
+        return (minValue + 1) % len(gas)
+                
