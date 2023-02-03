@@ -12,6 +12,7 @@ class Solution:
                     cur[ind2]=1+prev[ind2-1]
                 else:
                     cur[ind2]=max(cur[ind2-1],prev [ind2])
+            # note over here we need to always do .copy() otherwise it will always take reference instead of an actual value
             prev = cur.copy()
         
         return prev[l2]
