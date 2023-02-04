@@ -9,10 +9,7 @@ class Solution:
             return True
         prev=[False]*(len(s2)+1)
         cur=[False]*(len(s2)+1)
-        # dp=[[False]*(len(s2)+1) for i in range(len(s1)+1)]
         prev[0]=True
-        # for i in range(1,len(s2)+1): dp[0][i]=False
-        # for i in range(1,len(s1)+1): dp[i][0]=isAllStars(s1,i)
         
         for ind1 in range(1,len(s1)+1):
             cur[0]=isAllStars(s1,ind1)
