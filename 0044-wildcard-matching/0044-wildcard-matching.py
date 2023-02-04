@@ -2,23 +2,25 @@ from functools import cache
 
 class Solution:
     def isMatch(self, s2: str, s1: str) -> bool:
-        def isAllStars(s1,idx):
-            for i in range(idx+1):
-                if s1[i]!='*':
+        def isAllStars(r,idx):
+            for i in range(1,idx+1):
+                if r[i-1]!='*':
                     return False
             return True
         
-        @cache
-        def wildcardMatching(ind1,ind2):
-            if ind1<0 and ind2<0: return True
-            if ind1<0 and ind2>=0: return False
-            if ind1>=0 and ind2<0: return isAllStars(s1,ind1)
-            if s1[ind1]==s2[ind2] or s1[ind1]=='?':
-                return wildcardMatching(ind1-1,ind2-1)
-            else:
-                if s1[ind1]=='*':
-                    return wildcardMatching(ind1-1,ind2) or wildcardMatching(ind1,ind2-1) 
+        dp=[[False]*(len(s2)+1) for i in range(len(s1)+1)]
+        dp[0][0]=True
+        for i in range(1,len(s2)+1): dp[0][i]=False
+        for i in range(1,len(s1)+1): dp[i][0]=isAllStars(s1,i)
+        
+        for ind1 in range(1,len(s1)+1):
+            for ind2 in range(1,len(s2)+1):
+                if s1[ind1-1]==s2[ind2-1] or s1[ind1-1]=='?':
+                    dp[ind1][ind2]=dp[ind1-1][ind2-1]
                 else:
-                    return False
-        return wildcardMatching(len(s1)-1,len(s2)-1)
-            
+                    if s1[ind1-1]=='*':
+                        dp[ind1][ind2]= dp[ind1-1][ind2] or dp[ind1][ind2-1]
+                    else:
+                        dp[ind1][ind2]= False
+        return dp[len(s1)][len(s2)]
+         
