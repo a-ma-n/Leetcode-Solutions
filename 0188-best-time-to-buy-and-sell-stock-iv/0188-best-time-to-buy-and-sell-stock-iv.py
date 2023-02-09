@@ -1,14 +1,15 @@
 class Solution:
-    def maxProfit(self, k: int, prices: List[int]) -> int:
-        n=len(prices)
-        @cache
-        def buySell(ind=0,buy=0,cap=k):
-            if ind==n  or cap==0:
-                return 0
-            
-            if buy==0: #buy
-                profit=max(-prices[ind]+buySell(ind+1,1,cap),buySell(ind+1,0,cap))
-            else: #sell
-                profit=max(prices[ind]+buySell(ind+1,0,cap-1),buySell(ind+1,1,cap))
-            return profit
-        return buySell()
+    def maxProfit(self, k: int, Arr: List[int]) -> int:
+        n=len(Arr)
+        dp=[[[0]*(k+1) for i in range(2)] for j in range(n+1)]
+        
+        for ind in range(n-1,-1,-1):
+            for buy in range(0,2):
+                for cap in range(1,k+1):
+                    if buy==0:
+                        dp[ind][buy][cap] = max(0+dp[ind+1][0][cap], 
+                                -Arr[ind] + dp[ind+1][1][cap])
+                    if buy==1 :
+                        dp[ind][buy][cap] = max(0+dp[ind+1][1][cap],
+                                Arr[ind] + dp[ind+1][0][cap-1])
+        return dp[0][0][k]
