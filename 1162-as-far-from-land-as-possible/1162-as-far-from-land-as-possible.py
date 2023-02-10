@@ -1,4 +1,3 @@
-from collections import deque
 class Solution:
     def maxDistance(self, grid: List[List[int]]) -> int:
         rows,cols,steps=len(grid),len(grid[0]),0
