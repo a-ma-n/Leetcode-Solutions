@@ -2,7 +2,6 @@ from collections import Counter
 class Solution:
     def compress(self, chars: List[str]) -> int:
 
-        if len(chars)==1: return len(chars)
 
         res=0
         i=0
