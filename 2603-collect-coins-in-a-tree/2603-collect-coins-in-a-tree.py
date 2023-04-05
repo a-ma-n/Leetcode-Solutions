@@ -1,8 +1,8 @@
 class Solution:
     def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
         n=len(coins)
-        # tree=defaultdict(set)
-        tree = [set() for _ in range(n)]
+        tree=defaultdict(set)
+        # tree = [set() for _ in range(n)]
         
         # Build the tree from the edges
         for i,j in edges:
