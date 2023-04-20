@@ -7,18 +7,18 @@
 
 class Solution:
     def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
-        temp=[]
+        ans=[]
         def inorder(node):
             if not node: return
             
             if node.left: inorder(node.left)
             # if p==node:
-            temp.append(node)
+            ans.append(node)
             if node.right: inorder(node.right)
                 
         inorder(root)
-        for idx,j in enumerate(temp):
-            if j==p and idx!=len(temp)-1:
-                return temp[idx+1]
+        for idx,j in enumerate(ans):
+            if j==p and idx!=len(ans)-1:
+                return ans[idx+1]
         return None
                 
