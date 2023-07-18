@@ -2,7 +2,7 @@ class Solution:
     def combinationSum(self, c: List[int], target: int) -> List[List[int]]:
         N=len(c)
         def recur(ind,t,combn):
-            if t<0: return
+            # if t<0: return
             if ind==N: 
                 if t==0:
                     self.combinations.append(combn.copy())
