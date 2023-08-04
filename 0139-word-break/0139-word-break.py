@@ -3,17 +3,18 @@ class Solution:
         
         n=len(s)
         s+=" "
+        
         @cache
         def recur(ind):
             # print(ind,s[:ind])
             if ind>=n: return True
             
-            pick=False
+            isAnyTrue=False
             for k in range(ind,n+1):
                 # print(ind,s[ind:k+1])
                 if s[ind:k+1] in wordDict:
                     if recur(k+1):
-                        pick=True
+                        isAnyTrue=True
                         
-            return pick
+            return isAnyTrue
         return recur(0)
