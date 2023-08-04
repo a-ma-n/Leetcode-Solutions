@@ -10,5 +10,8 @@ class Solution:
                     if s[i - len(word) + 1:i + 1] == word:
                         dp[i] = True
                         break
+                else:
+                    print(i)
+                    continue
         
         return dp[-1]
