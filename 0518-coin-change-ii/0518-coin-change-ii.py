@@ -1,5 +1,6 @@
-from functools import cache
+# from functools import cache
 class Solution:
+    # space optimised tabular form
     def change(self, amount: int, coins: List[int]) -> int:
         prev=[0]*(amount+1)
         cur =[0]*(amount+1)
