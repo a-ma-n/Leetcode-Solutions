@@ -1,30 +1,18 @@
 class Solution:
-    """
-    The tricky part in the question is setting the values of the previous of cell(row before and col before) as we cannot move left or up thus if the current block has an object and its located on the boundary we cannot reach the following down or right blocks on the boundary"""
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        m = len(obstacleGrid)
-        n = len(obstacleGrid[0])
-        # no paths to the destination.
-        if obstacleGrid[0][0] == 1:
-            return 0
-
-        # Number of ways of reaching the starting cell = 1.
-        obstacleGrid[0][0] = 1
-
-        # Filling the values for the first column
+    def uniquePathsWithObstacles(self, grid: List[List[int]]) -> int:
+        m,n=len(grid),len(grid[0])
+        dp=[[0]*n for _ in range(m)]
+        if grid[0][0]==0:dp[0][0]=1
+        
+        for i in range(m):
+            if dp[i-1][0]==1 and grid[i][0]==0: dp[i][0]=1
+        
+        for j in range(n):
+            if dp[0][j-1]==1 and grid[0][j]==0: dp[0][j]=1
+                
         for i in range(1,m):
-            obstacleGrid[i][0] = int(obstacleGrid[i][0] == 0 and obstacleGrid[i-1][0] == 1)
-
-        # Filling the values for the first row        
-        for j in range(1, n):
-            obstacleGrid[0][j] = int(obstacleGrid[0][j] == 0 and obstacleGrid[0][j-1] == 1)
-            
-        for i in range(1,m):
-                for j in range(1,n):
-                    
-                    if obstacleGrid[i][j]==0:
-                        obstacleGrid[i][j]=obstacleGrid[i-1][j]+obstacleGrid[i][j-1]
-                    else:
-                        obstacleGrid[i][j]=0
-                        
-        return obstacleGrid[m-1][n-1]
+            for j in range(1,n):
+                if grid[i][j]==0:
+                    dp[i][j]=dp[i-1][j]+dp[i][j-1]
+        print(dp)
+        return dp[m-1][n-1]
