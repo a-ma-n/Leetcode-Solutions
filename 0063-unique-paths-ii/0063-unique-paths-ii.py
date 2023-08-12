@@ -1,4 +1,6 @@
 class Solution:
+    """
+    The tricky part in the question is setting the values of the previous of cell(row before and col before) as we cannot move left or up thus if the current block has an object and its located on the boundary we cannot reach the following down or right blocks on the boundary"""
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         m = len(obstacleGrid)
         n = len(obstacleGrid[0])
