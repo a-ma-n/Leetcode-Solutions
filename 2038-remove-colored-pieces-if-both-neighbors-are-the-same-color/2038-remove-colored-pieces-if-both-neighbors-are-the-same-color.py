@@ -7,7 +7,4 @@ class Solution:
                     alice+=1
                 else:
                     bob+=1
-        if alice>bob:
-            return True
-        else:
-            return False
+        return alice>bob
