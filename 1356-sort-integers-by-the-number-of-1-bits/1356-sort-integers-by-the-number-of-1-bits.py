@@ -1,8 +1,5 @@
 class Solution:
     def sortByBits(self, arr: List[int]) -> List[int]:
-        #mxV=max(arr)
-        def c(a):
-            return a[0]
         l=[]
         d=dict()
         for i in sorted(arr):
