@@ -1,4 +1,3 @@
-from functools import cache
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         dp = [1] * len(nums)
