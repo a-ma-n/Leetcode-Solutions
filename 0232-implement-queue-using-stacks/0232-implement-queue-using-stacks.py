@@ -1,7 +1,7 @@
 class MyQueue:
 
-    stack1,stack2 = [],[]
-
+    # stack1,stack2 = [],[]
+    # fill stack 1, then pop whole of stavk 2 and add stack 1s top element at the bottom then push back everything 
     def __init__(self):
         self.stack1,self.stack2=[],[]
         pass
@@ -20,14 +20,4 @@ class MyQueue:
         return self.stack1[-1]
 
     def empty(self) -> bool:
-        print(self.stack1)
         return len(self.stack1)==0
-        
-
-
-# Your MyQueue object will be instantiated and called as such:
-# obj = MyQueue()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.peek()
-# param_4 = obj.empty()
