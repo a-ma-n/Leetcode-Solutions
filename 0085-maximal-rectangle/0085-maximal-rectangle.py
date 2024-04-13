@@ -15,7 +15,7 @@ class Solution:
                 maxA=max(maxA,width*height)
             stack.append(i)
         return maxA
-    
+    # apply rowise largest rectangle in histogram
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         n,m=len(matrix),len(matrix[0])
         maxArea=0
